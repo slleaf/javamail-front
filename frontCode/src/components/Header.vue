@@ -2,21 +2,32 @@
   <div class="headerContainer">
     <!-- 头部左侧区域 -->
     <div class="left">
-      <div class="my-div">
-      <router-link to="/addnewmail" class="nav-link">发邮件</router-link>
-      <router-link to="/receivemaillogin"  class="nav-link">收件箱</router-link>
-      <router-link to="/parsemail"  class="nav-link">邮件分析</router-link>
-      <router-link to="/fileverification"  class="nav-link">附件校验</router-link>
-    </div>
-  
+    <el-menu
+    :default-active="activeIndex2"
+    class="el-menu-demo"
+    mode="horizontal"
+    background-color="#212529"
+    text-color="#fff"
+    active-text-color="#ffd04b"
+    @select="handleSelect"
+    
+  >
+    
+    <el-sub-menu index="1" >
+      <template #title >邮件发送</template>
+      <el-menu-item index="1-1" @click="goAddMails">发送邮件</el-menu-item>
+      <el-menu-item index="1-2" @click="goNewMailPages">发件记录</el-menu-item>
+    </el-sub-menu>
+    <el-menu-item index="2" @click="goinbox">收件箱</el-menu-item>
+    <el-menu-item index="3" @click="goToEmailAnalysis">邮件分析</el-menu-item>
+    <el-menu-item index="4" @click="goToAttachmentValidation">附件校验</el-menu-item>
+  </el-menu>
     </div>
     <!-- 头部右侧区域 -->
     <div class="right">
       
       <!-- 用户登录以后的展示 -->
       <div class="btn-dropdown">
-      <!-- 用户没有登录的时候的展示 -->
-     
       <div v-if="nickName" style="display: flex; justify-content: center; align-items: center;">
              <el-dropdown>
           <el-button type="primary">
@@ -33,7 +44,6 @@
           <el-button size="small" style="background: #212529; color: #aea7a2" @click="toLogin">登录</el-button>
           <el-button size="small" style="background: #ffc107; color: #684802" @click="toRegister">注册</el-button>
         </div>
-      
       </div>
     </div>
   </div>
@@ -88,22 +98,6 @@ const Logout = () => {
 //点击发布新闻的回调
 
 </script>
-
-<style>
-.el-dropdown {
-  vertical-align: top;
-  width: 100px;
-}
-
-.el-dropdown+.el-dropdown {
-  margin-left: 15px;
-}
-
-.el-icon-arrow-down {
-  font-size: 12px;
-}
-</style>
-
 <style lang="less" scoped>
 .headerContainer {
   width: 100%;
@@ -112,21 +106,23 @@ const Logout = () => {
   display: flex;
   justify-content: space-around;
   .left {
-    ul {
-      display: flex;
-      li {
-        list-style: none;
-        margin-left: 20px;
-        a:-webkit-any-link {
-          text-decoration: none;
-          color: #59646b;
-          &.active {
-            color: #c0adab;
-          }
+  ul {
+    display: flex;
+    margin-left: -100px; /* 将整个菜单向左移动 20px */
+    li {
+      list-style: none;
+      margin-left: 10px; /* 调整菜单项之间的间距 */
+      a:-webkit-any-link {
+        text-decoration: none;
+        color: #59646b;
+        &.active {
+          color: #c0adab;
         }
       }
+      white-space: nowrap; /* 禁止菜单项换行 */
     }
   }
+}
   .right {
     .containerButton {
       display: flex;
@@ -136,27 +132,23 @@ const Logout = () => {
     display: flex;
     flex-wrap: nowrap;
     .rightInput {
-      display: flex;
-       align-items: center;
-      :deep(.el-input__inner) {
-        height: 30px;
-        width: 150px;
-      }
-    }
-    .btn-dropdown{
-      display: flex;
-      align-items: center;
-    }
-    :deep(.el-button) {
-      margin: 0 0 0 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+  display: flex;
+  align-items: center;
 }
 
+.btn-dropdown {
+  display: flex;
+  align-items: center;
+}
 
+:deep(.el-button) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  }
+}
 .example-showcase .el-dropdown + .el-dropdown {
   margin-left: 15px;
 }
@@ -166,23 +158,6 @@ const Logout = () => {
   display: flex;
   align-items: center;
 }
-.nav-link {
-  margin-bottom: 10px; // 调整下方间距
-  padding: 8px 12px;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.nav-link:hover,
-.nav-link.router-link-active {
-  background-color: #f0f0f0;
-}
-.my-div {
-    margin-top: 20px; /* 增加上方间距 */
-  }
 </style>
 
 
