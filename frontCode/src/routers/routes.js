@@ -2,7 +2,7 @@
 export const staticRoutes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/parseMail",
   },
   {
     // 发邮件

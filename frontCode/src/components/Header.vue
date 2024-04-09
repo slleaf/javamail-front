@@ -3,6 +3,7 @@
     <!-- 头部左侧区域 -->
     <div class="left">
       <div class="my-div">
+      <router-link to="/addnewmail" class="nav-link">发邮件</router-link>
       <router-link to="/receivemaillogin"  class="nav-link">收件箱</router-link>
       <router-link to="/parsemail"  class="nav-link">邮件分析</router-link>
       <router-link to="/fileverification"  class="nav-link">附件校验</router-link>
@@ -23,9 +24,6 @@
           </el-button>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item @click="handlerNews">发送邮件</el-dropdown-item>
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>邮件记录</el-dropdown-item>
               <el-dropdown-item @click="Logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -49,7 +47,7 @@ export default defineComponent({
 </script>
 
 <script setup>
-import { getfindAllTypes, isUserOverdue } from '../api/index'
+import {  isUserOverdue } from '../api/index'
 import { ref, onMounted , getCurrentInstance ,watch, onUpdated} from "vue"
 import { useRouter } from 'vue-router'
 import { ArrowDown } from '@element-plus/icons-vue'
@@ -74,9 +72,8 @@ const toRegister = () => {
 onUpdated(() => {
   nickName.value = userInfoStore.nickName
 })
-onMounted(() => {
-  getList()
-})
+
+
 
 
 
@@ -89,11 +86,7 @@ const Logout = () => {
 }
 
 //点击发布新闻的回调
-const handlerNews = async () => {
-  //发送请求判断用户是否token过期
-  await isUserOverdue()
-  router.push({ name: "addOrModifyNews" });
-}
+
 </script>
 
 <style>
