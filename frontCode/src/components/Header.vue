@@ -5,7 +5,9 @@
     <el-menu
     :default-active="activeIndex2"
     class="el-menu-demo"
-    mode="horizontal"
+    unique-opened="true"
+    router="true"
+    close-on-click-outside="true"
     background-color="#212529"
     text-color="#fff"
     active-text-color="#ffd04b"
@@ -15,17 +17,16 @@
     
     <el-sub-menu index="1" >
       <template #title >邮件发送</template>
-      <el-menu-item index="1-1" @click="goAddMails">发送邮件</el-menu-item>
-      <el-menu-item index="1-2" @click="goNewMailPages">发件记录</el-menu-item>
+      <el-menu-item index="/addnewmail" @click="goAddMails">发送邮件</el-menu-item>
+      <el-menu-item index="/newmailpage" @click="goNewMailPages">发件记录</el-menu-item>
     </el-sub-menu>
-    <el-menu-item index="2" @click="goinbox">收件箱</el-menu-item>
-    <el-menu-item index="3" @click="goToEmailAnalysis">邮件分析</el-menu-item>
-    <el-menu-item index="4" @click="goToAttachmentValidation">附件校验</el-menu-item>
+    <el-menu-item index="/receivemaillogin" @click="goinbox">收件箱</el-menu-item>
+    <el-menu-item index="/parsemail" @click="goToEmailAnalysis">邮件分析</el-menu-item>
+    <el-menu-item index="/fileverification" @click="goToAttachmentValidation">附件校验</el-menu-item>
   </el-menu>
     </div>
     <!-- 头部右侧区域 -->
     <div class="right">
-      
       <!-- 用户登录以后的展示 -->
       <div class="btn-dropdown">
       <div v-if="nickName" style="display: flex; justify-content: center; align-items: center;">
@@ -106,23 +107,23 @@ const Logout = () => {
   display: flex;
   justify-content: space-around;
   .left {
-  ul {
-    display: flex;
+    ul {
+      display: flex;
     margin-left: -100px; /* 将整个菜单向左移动 20px */
-    li {
-      list-style: none;
+      li {
+        list-style: none;
       margin-left: 10px; /* 调整菜单项之间的间距 */
-      a:-webkit-any-link {
-        text-decoration: none;
-        color: #59646b;
-        &.active {
-          color: #c0adab;
+        a:-webkit-any-link {
+          text-decoration: none;
+          color: #59646b;
+          &.active {
+            color: #c0adab;
+          }
         }
-      }
       white-space: nowrap; /* 禁止菜单项换行 */
     }
+    }
   }
-}
   .right {
     .containerButton {
       display: flex;

@@ -2,7 +2,7 @@
 export const staticRoutes = [
   {
     path: "/",
-    redirect: "/parseMail",
+    redirect: "/addNewMail",
   },
   {
     // 发邮件
@@ -12,7 +12,7 @@ export const staticRoutes = [
   },
   {
     //发件历史
-    path: "/detail",
+    path: "/newmailpage",
     component: () => import("../pages/newMailPage/index.vue"),
     name: "newMailPage",
   },
