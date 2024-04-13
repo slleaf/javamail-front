@@ -4,8 +4,9 @@
     <div class="left">
     <el-menu
     :default-active="activeIndex2"
+    
     class="el-menu-demo"
-    unique-opened="true"
+    :unique-opened="true"
     router="true"
     close-on-click-outside="true"
     background-color="#212529"

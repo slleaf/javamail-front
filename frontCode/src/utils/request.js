@@ -34,6 +34,9 @@ service.interceptors.response.use(
     else if (response.data.code == 503) return  Promise.reject(ElMessage.error("密码有误"))
     else if (response.data.code == 504) return  Promise.reject(ElMessage.error("登录已过期"))
     else if (response.data.code == 505) return  Promise.reject(ElMessage.error("用户名占用"))
+    else if (response.data.code == 510) return  Promise.reject(ElMessage.error("文件未上传"))
+    else if (response.data.code == 511) return  Promise.reject(ElMessage.error("文件格式错误"))
+    else if (response.data.code == 521) return  Promise.reject(ElMessage.error("邮件上传错误"))
     } else {
       return response.data.data; /* 返回成功响应数据中的data属性数据 */
     }
