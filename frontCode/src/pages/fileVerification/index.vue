@@ -22,7 +22,7 @@
         jpg/png files with a size less than 500kb
       </div>
       <div>
-    <el-button type="success" @click="submit">上传文件</el-button>
+    <el-button type="success" @click="submit">提交上传</el-button>
   </div>
     </template>
   </el-upload>
@@ -67,7 +67,7 @@ const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
 }
 const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
   return ElMessageBox.confirm(
-    `Cancel the transfer of ${uploadFile.name} ?`
+    `确定要删除文件 ${uploadFile.name} ?`
   ).then(
     () => true,
     () => false
