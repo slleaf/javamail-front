@@ -14,6 +14,7 @@ export const useUserInfoStore = defineStore('userInfo', {
     token: getToken(),
     nickName: '',
     uid: '',
+    username:''
   }),
 
 	actions: {
@@ -31,11 +32,13 @@ export const useUserInfoStore = defineStore('userInfo', {
       const result = await getUserInfo()
       this.nickName = result.loginUser.nickName
       this.uid = result.loginUser.uid
+      this.username=result.loginUser.username
     },
     initUserInfo(){
       removeToken()
       this.nickName = ""
       this.uid = ""
+      this.username=""
       console.log('1111111111');
       
     }

@@ -21,5 +21,20 @@ export const uploadBatch = (data: FormData) => {
       data,
     })
   }
+  //邮件发送的api
+  export const addMail = (data: FormData) => {
+    return request({
+      method:"post",
+      url:"mail/send",
+      headers:{
+        "Content-Type": "multipart/form-data",
+      },
+      data,
+    })
+  }
+  //查询邮件记录的api
+  export const getfindNewsPageInfo = (info) => {
+    return request.post("mail/mailload",info)
+  }
         
   
