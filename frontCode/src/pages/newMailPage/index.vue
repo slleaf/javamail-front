@@ -14,7 +14,7 @@
         <div>
           <el-button @click="toDetail(item.id)" size="small"
             style="background: #198754; margin-left: 15px; color: #bbd3dc">查看详情</el-button>
-          <el-popconfirm  @confirm="handlerDelete(item.hid)" :title="`您确定要删除${item.title}吗?`">
+          <el-popconfirm  @confirm="handlerDelete(item.id)" :title="`您确定要删除吗?`">
             <template #reference>
               <el-button  size="small" style="background: #dc3545; color: #bbd3dc">删除</el-button>
             </template>
@@ -51,7 +51,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import pinia from '../../stores/index';
 import { useUserInfoStore } from '../../stores/userInfo'
-import { getfindNewsPageInfo } from '../../api/file';
+import { getfindNewsPageInfo,removeById } from '../../api/file';
 const userInfoStore = useUserInfoStore(pinia)
 const router = useRouter()
 
@@ -87,14 +87,14 @@ onMounted(() => {
   getPageList()
 })
 // 点击查看全文的回调
-const toDetail = (hid) => {
-  // router.push({ name: "Detail" ,query:{ hid }});
+const toDetail = (id) => {
+  router.push({ name: "newMailDetail" ,query:{ id }});
   console.log(findNewsPageInfo.value)
 }
 
 // 点击删除的回调
 const handlerDelete = async (id) => {
-  await removeByHid(id)
+  await removeById(id)
   ElMessage.success('删除成功!')
   //重新获取列表请求
   getPageList()

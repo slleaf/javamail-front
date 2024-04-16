@@ -36,5 +36,42 @@ export const uploadBatch = (data: FormData) => {
   export const getfindNewsPageInfo = (info) => {
     return request.post("mail/mailload",info)
   }
+  //删除邮件记录的api
+  export const removeById = (id) => {
+    return request({
+         method: "post",
+            url: "mail/removeById",
+            headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+            },
+            data:`id=${id}`
+  })
+};
+//发件记录详情的api
+export const getNewMailDetail = (id) => {
+  return request({
+      method: "post",
+      url: "mail/showMailDetail",
+      headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+       data:`id=${id}`
+});
+};
+//收件箱分页的api
+export const getInboxPageInfo = (info) => {
+  return request.post("receiveMail/inbox",info)
+}
+//收件箱详情的api
+export const getReceiveMailDetail = (id) => {
+  return request({
+      method: "post",
+      url: "receiveMail/showInboxDetail",
+      headers: {
+      "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+       data:`id=${id}`
+});
+};
         
   
