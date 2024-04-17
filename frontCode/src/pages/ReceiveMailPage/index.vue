@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-loading="loading" element-loading-text="正在访问邮箱服务器，请稍等">
     <div class="listItem">
       <!-- 每一项头条列表 -->
       <div class="containerItem" v-for="item in pageData" :key="item.id">
@@ -47,6 +47,7 @@ import { useRoute,useRouter } from "vue-router";
 import { getInboxPageInfo } from '../../api/file';
 const route = useRoute()
 const router = useRouter()
+const loading = ref(true)
 
 const findInboxPageInfo = ref(
   {
@@ -77,7 +78,8 @@ const getPageList = async () => {
   pageData.value = result.pageInfo.pageData
  findInboxPageInfo.value.pageNum = result.pageInfo.pageNum
  findInboxPageInfo.value.pageSize = result.pageInfo.pageSize
- totalSize.value = +result.pageInfo.totalSize
+ totalSize.value = +result.pageInfo
+ loading.value=false
 }
 // 组件挂载的生命周期钩子
 onMounted(() => {

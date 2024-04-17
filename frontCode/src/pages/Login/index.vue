@@ -83,7 +83,7 @@ const login = async () => {
   try {
     // await getUserInfo(loginForm.value)
     await userInfoStore.login(loginForm.value)
-    router.push({ name: "parseMail" });
+    router.push({ name: "helloWorld" });
   }catch(error){
     console.error('登录失败:', error)
   }

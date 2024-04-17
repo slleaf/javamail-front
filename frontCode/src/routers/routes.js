@@ -2,7 +2,7 @@
 export const staticRoutes = [
   {
     path: "/",
-    redirect: "/addNewMail",
+    redirect: "/helloWorld",
   },
   {
     // 发邮件
@@ -64,4 +64,10 @@ export const staticRoutes = [
     component: () => import("../pages/fileVerification/index.vue"),
     name: "fileverification",
   },
+  {
+    //欢迎页
+    path: "/helloworld",
+    component: () => import("../pages/helloWorld/index.vue"),
+    name: "helloWorld",
+  }
 ];
