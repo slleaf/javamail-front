@@ -1,6 +1,7 @@
 <template>
   <div>
  <div>
+ Received信息:<span v-text="email.received"></span><br>
   发件人:<span v-text="email.from"></span><br>
   收件人:<span v-text="email.to"></span><br>
   邮件主题:<span v-text="email.subject"></span><br>
@@ -48,9 +49,10 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 
 import type { UploadProps, UploadUserFile } from 'element-plus'
 
-import { uploadBatch } from '../../api/file';
+import { uploadBatch,dataAnalyze } from '../../api/file';
 
 const file = ref<UploadUserFile[]>([]);
+const status=ref(null)
   const email = reactive({
       attachments: null,
       bcc: null,
@@ -61,7 +63,8 @@ const file = ref<UploadUserFile[]>([]);
       subject: "",
       textContent:
         "",
-      to:null
+      to:null,
+      received:""
     });
 
 const handleRemove: UploadProps['onRemove'] = (file, uploadFiles) => {
@@ -83,9 +86,10 @@ const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
   const eml=JSON.parse(jsondata.eml1);
   console.log(eml)
   Object.assign(email,eml)
-  
-  
-
+  //时间戳判断
+  const statusCode=await dataAnalyze(data)
+  Object.assign(status,statusCode)
+  console.log(status.status)
   
   
 };
