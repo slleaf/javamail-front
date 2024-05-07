@@ -50,6 +50,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import type { UploadProps, UploadUserFile } from 'element-plus'
 
 import { uploadBatch,dataAnalyze } from '../../api/file';
+import { el } from 'element-plus/es/locale/index.mjs';
 
 const file = ref<UploadUserFile[]>([]);
 const status=ref(null)
@@ -90,6 +91,29 @@ const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
   const statusCode=await dataAnalyze(data)
   Object.assign(status,statusCode)
   console.log(status.status)
+  if(status.status===200){
+    ElMessageBox.alert('邮件时间戳无异常，没有发现修改/伪造', 'Title', {
+    confirmButtonText: '确认',
+    callback: () => {
+      console.log("邮件没问题")
+    },
+  })
+  }else if(status.status===400){
+    ElMessageBox.alert('邮件时间戳异常，发现修改/伪造', 'Title', {
+    confirmButtonText: '确认',
+    callback: () => {
+      console.log("邮件问题很大")
+      email.attachments=null,
+      email.bcc=null,
+      email.cc=null,
+      email.from="",
+      email.subject="",
+      email.messageId="",
+      email.textContent="",
+      email.to=null
+    },
+  })
+  }
   
   
 };
