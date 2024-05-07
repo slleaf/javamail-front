@@ -73,5 +73,16 @@ export const getReceiveMailDetail = (id) => {
        data:`id=${id}`
 });
 };
+//邮件时间校验的api
+export const dataAnalyze = (data: FormData) => {
+  return request({
+    method:"post",
+    url:"file/dataAnalyze",
+    headers:{
+      "Content-Type": "multipart/form-data",
+    },
+    data,
+  })
+}
         
   
